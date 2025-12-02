@@ -5,7 +5,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Create an instance of the Journal. The corrected empty constructor makes this clean.
         Journal myJournal = new Journal();
         Console.WriteLine("Welcome to the Journal Program!");
 
@@ -45,7 +44,7 @@ class Program
 
                 case "5":
                     Console.WriteLine("Goodbye!");
-                    return; // Exits the program
+                    return;
 
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
@@ -54,7 +53,6 @@ class Program
         }
     }
 
-    // Helper method to handle the logic for creating a new entry
     public static void WriteNewEntry(Journal journal)
     {
         List<string> prompts = new List<string>
@@ -80,10 +78,8 @@ class Program
 
         string dateText = DateTime.Now.ToShortDateString();
 
-        // Create the new Entry object
         Entry newEntry = new Entry(dateText, randomPrompt, entryText, mood, location);
 
-        // Use the AddEntry method from the Journal class
         journal.AddEntry(newEntry);
         Console.WriteLine("Entry saved!");
     }
