@@ -19,7 +19,6 @@ public class SimpleGoal : Goal
 
     public override string GetStringRepresentation()
     {
-        // Format: SimpleGoal:Name,Description,Points,IsComplete
         return $"SimpleGoal:{_shortName},{_description},{_points},{_isComplete}";
     }
 }

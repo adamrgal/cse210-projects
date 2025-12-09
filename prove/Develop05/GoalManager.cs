@@ -104,7 +104,6 @@ public class GoalManager
             
             int pointsEarned = goal.GetPoints();
 
-            // Check for bonus if it's a checklist goal
             if (goal is ChecklistGoal checklistGoal && checklistGoal.IsComplete())
             {
                 pointsEarned += checklistGoal.GetBonus();
@@ -124,7 +123,6 @@ public class GoalManager
 
         using (StreamWriter outputFile = new StreamWriter(filename))
         {
-            // First line is the score
             outputFile.WriteLine(_score);
             
             foreach (Goal goal in _goals)
@@ -142,7 +140,6 @@ public class GoalManager
 
         _score = int.Parse(lines[0]);
 
-        // Skip the first line (score) and process the rest
         for (int i = 1; i < lines.Length; i++)
         {
             string[] parts = lines[i].Split(":");
@@ -152,7 +149,6 @@ public class GoalManager
             if (goalType == "SimpleGoal")
             {
                 SimpleGoal newGoal = new SimpleGoal(details[0], details[1], details[2]);
-                // If it was saved as complete, mark it complete
                 if (bool.Parse(details[3])) newGoal.RecordEvent(); 
                 _goals.Add(newGoal);
             }
@@ -163,9 +159,7 @@ public class GoalManager
             else if (goalType == "ChecklistGoal")
             {
                 ChecklistGoal newGoal = new ChecklistGoal(details[0], details[1], details[2], int.Parse(details[4]), int.Parse(details[3]));
-                // We need to manually set the completed amount if we are loading
-                // Note: To do this properly, you might need to change the constructor or add a Setter in ChecklistGoal
-                // For this example, we assume we just re-record events to get back to the state (simplified)
+              
                 int amountDone = int.Parse(details[5]);
                 for(int j=0; j<amountDone; j++) { newGoal.RecordEvent(); } 
                 _goals.Add(newGoal);

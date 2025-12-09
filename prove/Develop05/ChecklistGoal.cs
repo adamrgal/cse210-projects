@@ -22,7 +22,6 @@ public class ChecklistGoal : Goal
         return _amountCompleted >= _target;
     }
 
-    // Overriding the display to show 2/5 completed
     public override string GetDetailsString()
     {
         string checkbox = IsComplete() ? "[X]" : "[ ]";
@@ -31,11 +30,9 @@ public class ChecklistGoal : Goal
 
     public override string GetStringRepresentation()
     {
-        // Format: ChecklistGoal:Name,Description,Points,Bonus,Target,AmountCompleted
         return $"ChecklistGoal:{_shortName},{_description},{_points},{_bonus},{_target},{_amountCompleted}";
     }
     
-    // Specific getter for logic in Manager (points calculation)
     public int GetBonus()
     {
         return _bonus;

@@ -6,18 +6,16 @@ public class EternalGoal : Goal
 
     public override void RecordEvent()
     {
-        // Eternal goals never "finish", so we do nothing to the state here.
-        // The manager handles adding the points.
+        
     }
 
     public override bool IsComplete()
     {
-        return false; // Eternal goals are never complete
+        return false; 
     }
 
     public override string GetStringRepresentation()
     {
-        // Format: EternalGoal:Name,Description,Points
         return $"EternalGoal:{_shortName},{_description},{_points}";
     }
 }
