@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 namespace ScriptureMemorizer
 {
@@ -6,13 +7,19 @@ namespace ScriptureMemorizer
     {
         static void Main(string[] args)
         {
+            string filename = "Users/adamgaloul/Downloads/downloads/bookofmormon.txt"; 
+
             try
             {
-                
-                ScriptureLibrary library = new ScriptureLibrary("/Users/adamgaloul/Downloads/bookofmormon.txt");
+                // Instantiate the library, which attempts to load scriptures from the file
+                ScriptureLibrary library = new ScriptureLibrary(filename);
                 Scripture scripture = library.GetRandomScripture();
 
                 string userInput = "";
+                Console.Clear();
+                Console.WriteLine("Welcome to the Scripture Memorizer! Press Enter to begin.");
+                Console.ReadLine();
+
 
                 while (userInput.ToLower() != "quit" && !scripture.IsCompletelyHidden())
                 {
@@ -39,8 +46,8 @@ namespace ScriptureMemorizer
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine("Error: The 'scriptures.txt' file was not found.");
-                Console.WriteLine("Please check the file path in Program.cs and make sure the file exists.");
+                Console.WriteLine($"Error: The '{filename}' file was not found.");
+                Console.WriteLine("Please check the file path and make sure the file exists in the program's execution directory.");
             }
             catch (InvalidOperationException ex)
             {

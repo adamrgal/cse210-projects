@@ -55,9 +55,17 @@ namespace ScriptureMemorizer
             return sb.ToString().Trim();
         }
 
+        // FIX APPLIED: Replaced lambda with foreach loop.
         public bool IsCompletelyHidden()
         {
-            return _words.All(w => w.IsHidden());
+            foreach (Word word in _words)
+            {
+                if (!word.IsHidden())
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
